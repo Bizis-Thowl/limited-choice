@@ -115,7 +115,7 @@ export default function Videos(props) {
               Great!
             </Typography>
             <Typography variant="h3">
-              You have answered all quiz questions and displayed an initial
+              You have answered all quiz questions and displayed a basic
               understanding about XP.
             </Typography>
           </Box>
