@@ -6,6 +6,7 @@ import useClickTracker from "./CustomHooks/useClickTracker";
 import {v4 as uuidv4} from 'uuid';
 import CopyToClipboardText from "./Videos/CopyToClipboardText";
 import uploadClicks from "./uploadClicks";
+import { shuffleArray } from "./utils/shuffleArray";
 
 function App() {
 
@@ -16,6 +17,15 @@ function App() {
   } else {
     user = uuidv4()
     localStorage.setItem("user", user);
+  }
+
+  let shuffledVideos;
+
+  if (localStorage.getItem("videos")) {
+    shuffledVideos = JSON.parse(localStorage.getItem("videos"))
+  } else {
+    shuffledVideos = shuffleArray(videos);
+    localStorage.setItem("videos", JSON.stringify(shuffledVideos));
   }
   
   const [videoProgress, setVideoProgress] = useState(localStorage.getItem("videoProgress") ? JSON.parse(localStorage.getItem("videoProgress")) : []);
@@ -31,13 +41,13 @@ function App() {
   }, [videoProgress])
 
   const updateVideoFinished = (videoId) => {
-    const video = videos.find((v) => videoId === v.id);
+    const video = shuffledVideos.find((v) => videoId === v.id);
     let updatedProgress = handleProgress(videoProgress, video, "finish");
     setVideoProgress(updatedProgress);
   };
 
   const updateVideoUnlocked = (videoId) => {
-    const video = videos.find((v) => videoId === v.id);
+    const video = shuffledVideos.find((v) => videoId === v.id);
     const updatedProgress = handleProgress(videoProgress, video, "unlock");
     setVideoProgress(updatedProgress);
   };
@@ -74,7 +84,7 @@ function App() {
       <Videos
         videoProgress={videoProgress}
         unlockVideo={updateVideoUnlocked}
-        videos={videos}
+        videos={shuffledVideos}
         finishVideo={updateVideoFinished}
         handleClickTracker={handleClickTracker}
       />
