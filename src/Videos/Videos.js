@@ -98,7 +98,7 @@ export default function Videos(props) {
           </IconButton>
         </Paper>
       )}
-      {!allUnlocked && (
+      {allUnlocked && (
         <Paper
           sx={{
             p: 2,
