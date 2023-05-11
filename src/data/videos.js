@@ -109,4 +109,21 @@ export const videos = [
         answerIndex: 0,
       },
     },
+    {
+      id: "7",
+      title: "Pair Programming",
+      description: "In this video you learn about the practice of Pair Programming",
+      link: "https://www.youtube.com/watch?v=a8WaP3Fwqa0",
+      thumbnail: "http://i3.ytimg.com/vi/a8WaP3Fwqa0/hqdefault.jpg",
+      quiz: {
+        question: "Pair programming is ...",
+        options: [
+          "a software development technique in which two programmers work on the same task at separate workstations.", 
+          "a software development practice where two programmers work together at one workstation, sharing thoughts and strategies.", 
+          "a project management technique where two programmers are assigned the same task to compete against each other.", 
+          "a training method where a senior programmer supervises a junior programmer's work without contributing to the task."
+        ],
+        answerIndex: 1,
+      },
+    }
   ];
