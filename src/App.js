@@ -5,7 +5,6 @@ import { videos } from "./data/videos";
 import useClickTracker from "./CustomHooks/useClickTracker";
 import {v4 as uuidv4} from 'uuid';
 import CopyToClipboardText from "./Videos/CopyToClipboardText";
-import uploadClicks from "./uploadClicks";
 import { shuffleArray } from "./utils/shuffleArray";
 
 function App() {
@@ -29,12 +28,7 @@ function App() {
   }
   
   const [videoProgress, setVideoProgress] = useState(localStorage.getItem("videoProgress") ? JSON.parse(localStorage.getItem("videoProgress")) : []);
-  const {clicks, handleClickTracker} = useClickTracker(localStorage.getItem("clickTracker") ? JSON.parse(localStorage.getItem("clickTracker")) : []);
-
-  useEffect(() => {
-    localStorage.setItem("clickTracker", JSON.stringify(clicks))
-    uploadClicks(clicks, user);
-  }, [clicks])
+  const {clicks, handleClickTracker} = useClickTracker(localStorage.getItem("clickTracker") ? JSON.parse(localStorage.getItem("clickTracker")) : [], user);
 
   useEffect(() => {
     localStorage.setItem("videoProgress", JSON.stringify(videoProgress))

@@ -1,14 +1,14 @@
-export default function uploadClicks(clicks, user) {
+export default function uploadClicks(click, user) {
 
     const serverAddress = "https://limited-choice-default-rtdb.europe-west1.firebasedatabase.app/";
 
-    var myHeaders = new Headers();
+    let myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
 
-    var raw = JSON.stringify(clicks);
+    let raw = JSON.stringify(click);
 
-    var requestOptions = {
-        method: 'PUT',
+    let requestOptions = {
+        method: 'POST',
         headers: myHeaders,
         body: raw,
         redirect: 'follow'

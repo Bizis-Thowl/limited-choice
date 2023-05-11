@@ -1,17 +1,20 @@
 import { useState } from "react";
+import uploadClicks from "../uploadClicks";
 
-function useClickTracker(initClicks) {
+function useClickTracker(initClicks, user) {
   const [clicks, setClicks] = useState(initClicks);
 
   const handleClickTracker = (id) => {
     setClicks((prevClicks) => {
+      const newClick = {
+        timestamp: Date.now(),
+        id: id,
+      }
       const newClicks = [
         ...prevClicks,
-        {
-          timestamp: Date.now(),
-          id: id,
-        },
+        newClick,
       ];
+      uploadClicks(newClick, user);
       return newClicks;
     });
   };
