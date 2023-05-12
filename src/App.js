@@ -6,6 +6,7 @@ import useClickTracker from "./CustomHooks/useClickTracker";
 import {v4 as uuidv4} from 'uuid';
 import CopyToClipboardText from "./Videos/CopyToClipboardText";
 import { shuffleArray } from "./utils/shuffleArray";
+import { uploadOrder } from "./uploadClicks";
 
 function App() {
 
@@ -24,6 +25,7 @@ function App() {
     shuffledVideos = JSON.parse(localStorage.getItem("videos"))
   } else {
     shuffledVideos = shuffleArray(videos);
+    uploadOrder(shuffledVideos, user)
     localStorage.setItem("videos", JSON.stringify(shuffledVideos));
   }
   
